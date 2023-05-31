@@ -33,6 +33,8 @@ const Login = (props) => {
 
   const [emailState, dispatchEmail] = useReducer(emailReduser, {value:'', isValid:null})
   const [passwordState, dispatchPassword] = useReducer(passwordReduser, {value:'', isValid:null})
+  const [emailState, dispatchEmail] = useReducer(emailReduser, {value:'', isValid:null})
+  const [passwordState, dispatchPassword] = useReducer(passwordReduser, {value:'', isValid:null})
 
   useEffect(() => {
     console.log('EFFECT RUNNING');
@@ -60,7 +62,7 @@ const Login = (props) => {
     dispatchEmail({type:'USER_INPUT',payload:event.target.value});
 
     setFormIsValid(
-      emailState.isValid && passwordState.isValid
+      emailState.value.includes('@') && enteredPassword.trim().length > 6
     );
   };
 
@@ -68,7 +70,7 @@ const Login = (props) => {
     dispatchPassword({type:'USER_INPUT', payload: event.target.value})
 
     setFormIsValid(
-      emailState.isValid && passwordState.isValid
+      emailState.value.includes('@') && event.target.value.trim().length > 6
     );
   };
 
